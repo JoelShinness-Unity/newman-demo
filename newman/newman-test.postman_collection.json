@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "98c883c3-1642-4b2c-bfd0-d5ffcdee1820",
+		"name": "newman-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HelloGet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a449f92-48ae-4820-885a-6c5a8e0c0838",
+						"exec": [
+							"pm.test(\"Status test\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Value\", () => {",
+							"  pm.response.to.have.jsonBody({\"name\":\"Joel\"})",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/hello",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c29d4847-5445-4265-9431-2b6c361ad38c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fe8a7e8b-85a6-4e39-b681-7232cf070e07",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "2a8af441-b6ad-4bfc-80b0-f7669e5dda1f",
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
