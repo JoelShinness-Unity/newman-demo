@@ -18,7 +18,8 @@
 							"});",
 							"",
 							"pm.test(\"Value\", () => {",
-							"  pm.response.to.have.jsonBody({\"name\":\"Joel\"})",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.name).to.eql(\"Joel\");",
 							"})"
 						],
 						"type": "text/javascript"
@@ -35,6 +36,52 @@
 					],
 					"path": [
 						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DBGet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b95cb718-2299-40b1-b2df-5713f745836e",
+						"exec": [
+							"pm.test('status', () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('values', () => {",
+							"  const responseJSON = pm.response.json();",
+							"  pm.expect(responseJSON).to.eql([",
+							"    {",
+							"      \"id\": 1,",
+							"      \"name\": \"Trevor\"",
+							"    },",
+							"    {",
+							"      \"id\": 2,",
+							"      \"name\": \"Joel\"",
+							"    }",
+							"  ]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/from-db",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"from-db"
 					]
 				}
 			},
@@ -65,9 +112,8 @@
 	],
 	"variable": [
 		{
-			"id": "2a8af441-b6ad-4bfc-80b0-f7669e5dda1f",
-			"key": "baseUrl",
-			"value": "http://localhost:8081",
+			"id": "d93cd219-17c6-4717-86c2-ab530d357c91",
+			"value": "",
 			"type": "string"
 		}
 	],
